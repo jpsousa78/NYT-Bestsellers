@@ -4,8 +4,12 @@ import './App.css';
 import logo from './logo.png'
 import {
   Container,
+  Divider,
+  Grid,
   Header,
+  List,
   Menu,
+  Segment,
 } from 'semantic-ui-react'
 
 function App() {
@@ -14,6 +18,10 @@ function App() {
   const [selectedGenre, setSelectedGenre] = useState('hardcover-fiction');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const sugar = 'https://static.wikia.nocookie.net/powerpuff/images/5/54/Pouring_Sugar.png/revision/latest/scale-to-width-down/1200?cb=20190131193417';
+  const spice = 'https://static.wikia.nocookie.net/powerpuff/images/7/73/Pouring_Spice.png/revision/latest/scale-to-width-down/1000?cb=20190131193425';
+  const nice = 'https://static.wikia.nocookie.net/powerpuff/images/8/86/Pouring_Everything_Nice.png/revision/latest/scale-to-width-down/1000?cb=20190131193432';
+  const cofee = 'https://media.tenor.com/KC5lFvefaGwAAAAM/coffee-time-fry.gif';
   
   const API_KEY = '82UmBzC3cHF3CGf1MtLzoGxx5sh9bsd0';
 
@@ -97,6 +105,45 @@ function App() {
           </ul>
         )}
       </Container>
+
+      <Segment inverted vertical style={{margin: '5em 0em 0em', padding: '5em 0em'}}>
+        <Container textAlign='center'>
+          <Grid divided inverted stackable textAlign='center'>
+            <Grid.Column width={3}>
+              <Header inverted as='h4' content='Made With' />
+              <List link inverted>
+                <List.Item as='a' href={sugar}>Sugar</List.Item>
+                <List.Item as='a' href={spice}>Spice</List.Item>
+                <List.Item as='a' href={nice}>Everything Nice</List.Item>
+                <List.Item as='a' href={cofee}>Coffee</List.Item>
+              </List>
+            </Grid.Column>
+            <Grid.Column width={7}>
+              <Header inverted as='h4' content='FrontEnd Challenge' />
+              <p>
+                Creating a single-page application that displays lists of bestsellers from 
+                the New York Times Books API.
+              </p>
+            </Grid.Column>
+          </Grid>
+
+          <Divider inverted section />
+          <List horizontal inverted divided link size='small'>
+            <List.Item as='a' href='#'>
+              Site Map
+            </List.Item>
+            <List.Item as='a' href='#'>
+              Contact Us
+            </List.Item>
+            <List.Item as='a' href='#'>
+              Terms and Conditions
+            </List.Item>
+            <List.Item as='a' href='#'>
+              Privacy Policy
+            </List.Item>
+          </List>
+        </Container>
+      </Segment>
     </div>
   );
 }
