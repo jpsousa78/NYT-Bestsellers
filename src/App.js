@@ -4,20 +4,41 @@ import './App.css';
 
 function App() {
   const [books, setBooks] = useState([]);
+  const [genres, setGenres] = useState([]);
+  const [selectedGenre, setSelectedGenre] = useState('hardcover-fiction');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   const API_KEY = '82UmBzC3cHF3CGf1MtLzoGxx5sh9bsd0';
-  const API_URL = `https://api.nytimes.com/svc/books/v3/lists/current/hardcover-fiction.json?api-key=${API_KEY}`;
 
   useEffect(() => {
-    const fetchBooks = async () => {
+    const fetchLists = async () => {
+      setLoading(true); 
+      setError(null);
       try {
-        const response = await axios.get(API_URL);
+        const response = await axios.get(
+          `https://api.nytimes.com/svc/books/v3/lists/names.json?api-key=${API_KEY}`
+        );
+        setGenres(response.data.results);
+        setLoading(false);
+      } catch (err) {
+        setLoading(false);
+      }
+    };
+
+    fetchLists();
+
+    const fetchBooks = async () => {
+      setLoading(true);
+      setError(null);
+      try {
+        const response = await axios.get(
+          `https://api.nytimes.com/svc/books/v3/lists/current/${selectedGenre}.json?api-key=${API_KEY}`
+        );
         setBooks(response.data.results.books);
         setLoading(false);
       } catch (err) {
-        setError('Failed to fetch data');
+        setError('Failed to fetch data.');
         setLoading(false);
       }
     };
@@ -30,17 +51,33 @@ function App() {
 
   return (
     <div className="App">
-      <h1>New York Times Bestsellers - Hardcover Fiction</h1>
-      <ul>
-        {books.map((book) => (
-          <li key={book.rank}>
-            <h2>{book.title} by {book.author}</h2>
-            <p>Rank: {book.rank}</p>
-            <img src={book.book_image} alt={book.title} width="150" />
-            <p>{book.description}</p>
-          </li>
-        ))}
-      </ul>
+      <h1>New York Times Bestsellers</h1>
+      <div className="genre-selector">
+        <label htmlFor="genre">Select a genre: </label>
+        <select id="genre" onChange={handleGenreChange} value={selectedGenre}>
+          {genres.map((genre) => (
+            <option key={genre} value={genre}>
+              {genre.replace('-', ' ')}
+            </option>
+          ))}
+        </select>
+      </div>
+
+      {loading && <div>Loading...</div>}
+      {error && <div>{error}</div>}
+
+      {!loading && !error && (
+        <ul>
+          {books.map((book) => (
+            <li key={book.rank}>
+              <h2>{book.title} by {book.author}</h2>
+              <p>Rank: {book.rank}</p>
+              <img src={book.book_image} alt={book.title} width="150" />
+              <p>{book.description}</p>
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 }
