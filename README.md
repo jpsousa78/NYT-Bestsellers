@@ -1,6 +1,25 @@
-# Getting Started with Create React App
+# FrontEnd Challenge - SuperSummary
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was created with the purpose of demonstrating in a Technical Trial some of the FrontEnd
+coding skills of João Paulo de Sousa Brito (John), going through the hiring process for SuperSummary.
+
+## To run this application
+
+First and foremost, you must have Node.js installed in your system. This code already includes this user's
+personal New York Time Book API key, but feel free to set up ypur own through [this website's](https://developer.nytimes.com/get-started) instructions.
+
+Next, clone the [repository](https://github.com/jpsousa78/NYT-Bestsellers.git) you found this README in (or run this line in your terminal `git clone https://github.com/jpsousa78/NYT-Bestsellers.git`).
+
+Once cloned, open your terminal and enter the repository folder through a command line. Run `npm install` to install the project's dependencies. Then, run `npm start` in your terminal. After that, a tab should pop up in your browser window in the addresss [http://localhost:3000](http://localhost:3000). If not, you can also freely browse through this link.
+
+And that's it! Feel free to explore the application!
+
+Further below there are some standard documentation on the react app.
+
+
+## Standard React App functionalities
+
+Bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 
@@ -44,27 +63,3 @@ You don't have to ever use `eject`. The curated feature set is suitable for smal
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

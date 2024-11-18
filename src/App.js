@@ -13,25 +13,32 @@ import {
 } from 'semantic-ui-react'
 
 function App() {
+
   const [books, setBooks] = useState([]);
   const [genres, setGenres] = useState([]);
   const [selectedGenre, setSelectedGenre] = useState('hardcover-fiction');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  
+  // Image hyperlinks - Not relevant, but fun
   const sugar = 'https://static.wikia.nocookie.net/powerpuff/images/5/54/Pouring_Sugar.png/revision/latest/scale-to-width-down/1200?cb=20190131193417';
   const spice = 'https://static.wikia.nocookie.net/powerpuff/images/7/73/Pouring_Spice.png/revision/latest/scale-to-width-down/1000?cb=20190131193425';
   const nice = 'https://static.wikia.nocookie.net/powerpuff/images/8/86/Pouring_Everything_Nice.png/revision/latest/scale-to-width-down/1000?cb=20190131193432';
   const cofee = 'https://media.tenor.com/KC5lFvefaGwAAAAM/coffee-time-fry.gif';
   
+  const API_BASE_LINK = 'https://api.nytimes.com/svc/books/v3/lists/'
   const API_KEY = '82UmBzC3cHF3CGf1MtLzoGxx5sh9bsd0';
 
+
   useEffect(() => {
+
+    // Function used to load every book list category from the ny times book api
     const fetchLists = async () => {
       setLoading(true); 
       setError(null);
       try {
         const response = await axios.get(
-          `https://api.nytimes.com/svc/books/v3/lists/names.json?api-key=${API_KEY}`
+          `${API_BASE_LINK}names.json?api-key=${API_KEY}`
         );
         setGenres(response.data.results);
         setLoading(false);
@@ -41,12 +48,14 @@ function App() {
     };
 
     fetchLists();
+
+    // Function used to load every book from its respective list category from the ny times book api
     const fetchBooks = async () => {
       setLoading(true);
       setError(null);
       try {
         const response = await axios.get(
-          `https://api.nytimes.com/svc/books/v3/lists/current/${selectedGenre}.json?api-key=${API_KEY}`
+          `${API_BASE_LINK}current/${selectedGenre}.json?api-key=${API_KEY}`
         );
         setBooks(response.data.results.books);
         setLoading(false);
@@ -59,6 +68,7 @@ function App() {
     fetchBooks();
   }, [selectedGenre]);
 
+  // Handles category list changes
   const handleGenreChange = (e) => {
     setSelectedGenre(e.target.value);
   };
